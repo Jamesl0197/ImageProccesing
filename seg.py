@@ -28,7 +28,7 @@ def SEGMENT(event,x,y,flags,param):
 		# W = W + 20
 		# H = H + 20
 		# croppedimg = originalimg[X:Y+H, X:X+W]
-		cv2.imshow('Cervical1',threshold1)
+		cv2.imshow('Cervical',img1_bg)
 		croppedimg = originalimg
 
 
@@ -37,7 +37,7 @@ def SEGMENT(event,x,y,flags,param):
 # Opening an image using a File Open dialog:
 img = cv2.imread("Cervical.jpg")
 originalimg = img
-
+cv2.imshow('Cervical',img)
 
 cv2.namedWindow('Cervical',600)
 cv2.setMouseCallback('Cervical',SEGMENT)
@@ -51,7 +51,7 @@ ret, threshold1 = cv2.threshold(imgGray,200,255,cv2.THRESH_BINARY_INV+cv2.THRESH
 # noise removal
 kernel = np.ones((5,5),np.uint8)
 opening = cv2.morphologyEx(threshold1,cv2.MORPH_OPEN,kernel, iterations = 0)
-cv2.imshow('Cervical2',opening)
+
 
 # Background area
 background = cv2.dilate(opening,kernel,iterations=2)
@@ -59,7 +59,7 @@ background = cv2.dilate(opening,kernel,iterations=2)
 # Foreground area
 dist_transform = cv2.distanceTransform(opening,cv2.DIST_L2,5)
 ret, sure_fg = cv2.threshold(dist_transform,0.05*dist_transform.max(),255,0)
-cv2.imshow('Cervical3',sure_fg)
+
 
 # Unknown region
 sure_fg = np.uint8(sure_fg)
