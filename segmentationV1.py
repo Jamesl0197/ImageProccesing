@@ -18,16 +18,7 @@ def SEGMENT(event,x,y,flags,param):
 		img1_bg[np.where((img1_bg == [0,0,0]).all(axis = 2))] = [255,255,255]
 		img1_bg = cv2.cvtColor(img1_bg, cv2.COLOR_RGB2GRAY)
 		
-		#WOW,C = cv2.threshold(img1_bg,254,255,cv2.THRESH_BINARY)
 
-		# p = np.argwhere(C == 0) 
-		# p = np.fliplr(p) 
-		# X, Y, W, H = cv2.boundingRect(p) 
-		# X = X - 10
-		# Y = Y - 10
-		# W = W + 20
-		# H = H + 20
-		# croppedimg = originalimg[X:Y+H, X:X+W]
 		cv2.imshow('Cervical1',threshold1)
 		croppedimg = originalimg
 
